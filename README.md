@@ -8,6 +8,7 @@ A webapp to make the the livf of moderators from faf easier (not simple).
   * game ban vs chat ban vs both
   * duration or permanent
   * bans should be never deleted, but disabled and stay as log in the db
+  * bans can be seen by everyone
 
 ## Avatars
 * CRUD avatars (avatars_list)

@@ -7,26 +7,12 @@ export default class NavBar extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-default navbar-fixed-top">
-                <div className="container">
-                    <div className="navbar-header">
-                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span className="sr-only">Toggle navigation</span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                        </button>
-                        <a className="navbar-brand" href="#">
-                            <img alt="FaF" src="/images/faf_32x32.png" />
-                        </a>
-                    </div>
-                    <div id="navbar" className="navbar-collapse collapse">
-                        <ul className="nav navbar-nav">
-                            <li><Link to="/" activeClassName="active">Home</Link></li>
-                            <li><Link to="/clans" activeClassName="active">Clans</Link></li>
-                        </ul>
-                    </div>
-                </div>
+            <nav>
+                <ul>
+                <li><img alt="FaF" src="/images/faf_32x32.png" /></li>
+                <li><Link to="/" activeStyle={{ color: 'red' }}>Home</Link></li>
+                <li><Link to="/test" activeStyle={{ color: 'red' }}>TestLink</Link></li>
+                </ul>
             </nav>
         );
     }

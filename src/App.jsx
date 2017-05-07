@@ -5,6 +5,8 @@ import {Router, Route, browserHistory} from 'react-router';
 
 import Home from './pages/Home.jsx';
 
+import './main.scss';
+
 // used for jquery Links
 window.myHistory = browserHistory;
 

@@ -1,0 +1,25 @@
+$color-background: #272b30;
+$color-main: #c8c8c8;
+
+h1, h2 {
+	font-family: 'supcom';
+}
+
+body { 
+  color: $color-main;
+  background-color: $color-background;
+}
+
+nav, footer {
+  background-color: black;
+}
+
+a {
+  color: $color-main;
+  text-decoration: none;
+}
+
+nav ul li, footer ul li {
+  margin-left: 15px;
+  display: inline-block;
+}

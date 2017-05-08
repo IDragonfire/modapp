@@ -3,7 +3,7 @@ import React from 'react';
 import Api from '../utils/Api.jsx';
 import Page from '../components/Page.jsx';
 
-export default class AvatarList extends React.Component {
+export default class BanList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ export default class AvatarList extends React.Component {
     }
 
     componentDidMount() {
-        Api.json().all('avatar').get()
+        Api.json().all('banInfo').get({include: 'player'})
             .then(this.setData.bind(this)).catch(error => console.error(error));
     }
 
@@ -23,12 +23,15 @@ export default class AvatarList extends React.Component {
         this.setState({ list: data });
     }
 
+    getPlayerName(banData) {
+        return banData.player ? banData.player.login : 'UNKNOWN PLAYER';
+    }
+
     renderList() {
         return <ul>
-                {this.state.list.map((avatar) =>
-                    <li key={avatar.id}>
-                        <img src={avatar.url}/>
-                        {avatar.tooltip}
+                {this.state.list.map((ban) =>
+                    <li key={ban.id}>
+                        {this.getPlayerName(ban)} - {ban.reason}
                     </li>
                 )}
                </ul>;
@@ -36,7 +39,7 @@ export default class AvatarList extends React.Component {
 
     render() {
         return (
-            <Page title="Avatar List">
+            <Page title="Ban List">
                 {!this.state.list && 
                     'Loading ...'
                 }

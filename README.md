@@ -23,3 +23,18 @@ A webapp to make the the livf of moderators from faf easier (not simple).
 
 ## Reports
 
+# Development
+
+1. Install node
+2. Run `npm install`
+3. Start dev server with `npm run dev`
+
+# Resources
+
+* JavaScript Documentation: http://devdocs.io/
+* Webpack-Dev-Server Documentation: https://webpack.github.io/docs/webpack-dev-server.html 
+* React Documentation: https://facebook.github.io/react/docs/hello-world.html 
+
+I suggest to use [Visual Studio Code](https://facebook.github.io/react/docs/hello-world.html) for development with this plugins:
+* ESLint
+* Sass

@@ -5,6 +5,7 @@ import {Router, Route, browserHistory} from 'react-router';
 
 import Home from './pages/Home.jsx';
 import AvatarList from './pages/AvatarList.jsx';
+import BanList from './pages/BanList.jsx';
 
 import './main.scss';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Route>
         <Route path="/" component={Home} />
         <Route path="/avatars" component={AvatarList} />
+        <Route path="/bans" component={BanList} />
       </Route>
     </Router>,
     document.getElementById('app')

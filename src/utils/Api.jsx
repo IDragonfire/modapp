@@ -14,6 +14,26 @@ jsonApi.define('avatar', {
     url: ''
 });
 
+jsonApi.define('banInfo', {
+    expiresAt: '',
+    reason: '',
+    player: {
+        jsonApi: 'hasOne',
+        type: 'player'
+    },
+});
+
+jsonApi.define('player', {
+    login: '',
+    eMail: '',
+    userAgent: ''
+    //Bug in Devour: https://github.com/twg/devour/issues/47
+    // clanMemberships: {
+    //     jsonApi: 'hasMany',
+    //     type: 'clanMembership'
+    // }
+});
+
 
 export default {
     json() {

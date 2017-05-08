@@ -1,17 +1,23 @@
 $color-background: #272b30;
 $color-main: #c8c8c8;
+$color-highlight: rgba(255, 0, 0, .75);
+$color-header: #1C1E22;
+$color-1: #2E3338;
+$color-2: #353A41;
 
-h1, h2 {
-	font-family: 'supcom';
+h1,
+h2 {
+  font-family: 'supcom';
 }
 
-body { 
+body {
   color: $color-main;
   background-color: $color-background;
   margin: 0px;
 }
 
-nav, footer {
+nav,
+footer {
   background-color: black;
 }
 
@@ -20,7 +26,32 @@ a {
   text-decoration: none;
 }
 
-nav ul li, footer ul li {
+nav ul li,
+footer ul li {
   margin-left: 15px;
   display: inline-block;
+}
+
+.rt-th {
+  background-color: $color-header;
+}
+
+div .-odd {
+  background-color: $color-1;
+}
+
+div .-even {
+  background-color: $color-2;
+}
+
+.-sort-asc {
+  box-shadow: inset 0 3px 0 0 $color-highlight !important;
+}
+
+.-sort-desc {
+  box-shadow: inset 0 -3px 0 0 $color-highlight !important;
+}
+
+.active {
+  color: $color-highlight;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-table/react-table.css';
 import ReactTable from 'react-table';
 
 import Api from '../utils/Api.jsx';
@@ -29,6 +28,12 @@ export default class BanList extends React.Component {
             id: 'expiresAt',
             accessor: banData => Utils.formatTimestamp(banData.expiresAt),
             width: 160
+        }, {
+            header: 'Actions',
+            accessor: 'action',
+            render: props => <button alt={props.row.id}>Revoke</button>,
+            width: 85,
+            hideFilter: true
         }];
     }
 

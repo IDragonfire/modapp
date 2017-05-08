@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-table/react-table.css';
 import ReactTable from 'react-table';
 
 import Api from '../utils/Api.jsx';
@@ -14,13 +13,14 @@ export default class AvatarList extends React.Component {
         this.columns = [{
             header: '#',
             accessor: 'id',
-            width: 20
+            width: 60
         }, {
             id: 'img',
             header: 'Img',
             accessor: 'url',
-            render: avatar => <img src={avatar.row.url} alt={avatar.row.url} />,
-            width: 50
+            render: props => <img src={props.row.url} alt={props.row.url} />,
+            width: 50,
+            hideFilter: true
         }, {
             header: 'Tooltip',
             accessor: 'tooltip'

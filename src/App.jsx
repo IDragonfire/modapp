@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx';
 import AvatarList from './pages/AvatarList.jsx';
 import BanList from './pages/BanList.jsx';
 
+import 'react-table/react-table.css';
 import './main.scss';
 
 // used for jquery Links

@@ -10,9 +10,9 @@ export default class NavBar extends React.Component {
             <nav>
                 <ul>
                 <li><img alt="FaF" src="/images/faf_32x32.png" /></li>
-                <li><Link to="/" activeStyle={{ color: 'red' }}>Home</Link></li>
-                <li><Link to="/avatars" activeStyle={{ color: 'red' }}>Avatar List</Link></li>
-                <li><Link to="/bans" activeStyle={{ color: 'red' }}>Ban List</Link></li>
+                <li><Link to="/" activeClassName="active">Home</Link></li>
+                <li><Link to="/avatars" activeClassName="active">Avatar List</Link></li>
+                <li><Link to="/bans" activeClassName="active">Ban List</Link></li>
                 </ul>
             </nav>
         );

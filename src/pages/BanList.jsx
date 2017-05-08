@@ -1,7 +1,10 @@
 import React from 'react';
+import 'react-table/react-table.css';
+import ReactTable from 'react-table';
 
 import Api from '../utils/Api.jsx';
 import Page from '../components/Page.jsx';
+import Utils from '../utils/Utils.jsx';
 
 export default class BanList extends React.Component {
     constructor(props) {
@@ -9,10 +12,28 @@ export default class BanList extends React.Component {
         this.state = {
             list: null
         };
+        this.columns = [{
+            header: '#',
+            accessor: 'id',
+            width: 60
+        }, {
+            id: 'player',
+            header: 'Player',
+            accessor: banData => banData.player ? banData.player.login : 'UNKNOWN PLAYER',
+            width: 130
+        }, {
+            header: 'Reason',
+            accessor: 'reason'
+        }, {
+            header: 'ExpiresAt',
+            id: 'expiresAt',
+            accessor: banData => Utils.formatTimestamp(banData.expiresAt),
+            width: 160
+        }];
     }
 
     componentDidMount() {
-        Api.json().all('banInfo').get({include: 'player'})
+        Api.json().all('banInfo').get({ include: 'player' })
             .then(this.setData.bind(this)).catch(error => console.error(error));
     }
 
@@ -27,24 +48,25 @@ export default class BanList extends React.Component {
         return banData.player ? banData.player.login : 'UNKNOWN PLAYER';
     }
 
-    renderList() {
-        return <ul>
-                {this.state.list.map((ban) =>
-                    <li key={ban.id}>
-                        {this.getPlayerName(ban)} - {ban.reason}
-                    </li>
-                )}
-               </ul>;
+    filter(filter, row) {
+        const id = filter.pivotId || filter.id;
+        const filterValue = filter.value.toLowerCase();
+        return row[id] !== undefined ? String(row[id]).toLowerCase().includes(filterValue) : true;
     }
 
     render() {
         return (
             <Page title="Ban List">
-                {!this.state.list && 
+                {!this.state.list &&
                     'Loading ...'
                 }
                 {this.state.list &&
-                    this.renderList()
+                    <ReactTable
+                        showFilters={true}
+                        defaultFilterMethod={this.filter}
+                        data={this.state.list}
+                        columns={this.columns}
+                    />
                 }
             </Page>
         );

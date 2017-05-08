@@ -1,4 +1,6 @@
 import React from 'react';
+import 'react-table/react-table.css';
+import ReactTable from 'react-table';
 
 import Api from '../utils/Api.jsx';
 import Page from '../components/Page.jsx';
@@ -9,6 +11,23 @@ export default class AvatarList extends React.Component {
         this.state = {
             list: null
         };
+        this.columns = [{
+            header: '#',
+            accessor: 'id',
+            width: 20
+        }, {
+            id: 'img',
+            header: 'Img',
+            accessor: 'url',
+            render: avatar => <img src={avatar.row.url} alt={avatar.row.url} />,
+            width: 50
+        }, {
+            header: 'Tooltip',
+            accessor: 'tooltip'
+        }, {
+            header: 'Url',
+            accessor: 'url'
+        }];
     }
 
     componentDidMount() {
@@ -23,25 +42,25 @@ export default class AvatarList extends React.Component {
         this.setState({ list: data });
     }
 
-    renderList() {
-        return <ul>
-                {this.state.list.map((avatar) =>
-                    <li key={avatar.id}>
-                        <img src={avatar.url}/>
-                        {avatar.tooltip}
-                    </li>
-                )}
-               </ul>;
+    filter(filter, row) {
+        const id = filter.pivotId || filter.id;
+        const filterValue = filter.value.toLowerCase();
+        return row[id] !== undefined ? String(row[id]).toLowerCase().includes(filterValue) : true;
     }
 
     render() {
         return (
             <Page title="Avatar List">
-                {!this.state.list && 
+                {!this.state.list &&
                     'Loading ...'
                 }
                 {this.state.list &&
-                    this.renderList()
+                    <ReactTable
+                        showFilters={true}
+                        defaultFilterMethod={this.filter}
+                        data={this.state.list}
+                        columns={this.columns}
+                    />
                 }
             </Page>
         );

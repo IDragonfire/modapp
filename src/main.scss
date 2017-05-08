@@ -16,9 +16,13 @@ body {
   margin: 0px;
 }
 
-nav,
+.headroom ,
 footer {
   background-color: black;
+}
+
+.container {
+  margin: 15px;
 }
 
 a {
@@ -26,7 +30,7 @@ a {
   text-decoration: none;
 }
 
-nav ul li,
+.headroom  ul li,
 footer ul li {
   margin-left: 15px;
   display: inline-block;

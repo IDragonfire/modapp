@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 
 import Api from '../utils/Api.jsx';
 import Page from '../components/Page.jsx';
+import SelectPlayer from '../components/SelectPlayer.jsx';
 import Utils from '../utils/Utils.jsx';
 
 export default class BanList extends React.Component {
@@ -61,10 +62,16 @@ export default class BanList extends React.Component {
 
     render() {
         return (
-            <Page title="Ban List">
+            <Page title="Bans">
+                <div>
+                    <h2>Create Ban</h2>
+                    <SelectPlayer/>
+                </div>
                 {!this.state.list &&
                     'Loading ...'
                 }
+                <div>
+                    <h2>Ban List</h2>
                 {this.state.list &&
                     <ReactTable
                         showFilters={true}
@@ -73,6 +80,7 @@ export default class BanList extends React.Component {
                         columns={this.columns}
                     />
                 }
+                </div>
             </Page>
         );
     }

@@ -13,7 +13,7 @@ export default class CreateBan extends React.Component {
         super(props);
         this.state = {
             expire: null,
-            m: Moment()
+            showPicker: false
         };
         this.expireIn = this.expireIn.bind(this);
     }
@@ -43,7 +43,7 @@ export default class CreateBan extends React.Component {
     expireIn(days) {
         var result = new Date();
         result.setDate(result.getDate() + days);
-        this.setState({ expire: result });
+        this.setState({ expire: Moment(result) });
     }
 
     render() {
@@ -58,19 +58,29 @@ export default class CreateBan extends React.Component {
                         <h2>Duration</h2>
                         <div>
                             <label>
-                                <input type="radio" name="duration" value="permanent" /> Permanent
+                                <input type="radio"
+                                       name="duration"
+                                       value="permanent"
+                                       checked={!this.state.expire}
+                                       onChange={() => this.setState({expire: null})}/> Permanent
                             </label>
                             <label>
-                                <input type="radio" name="duration" value="expire" checked={true} /> Expire
+                                <input type="radio"
+                                       name="duration"
+                                       value="expire"
+                                       checked={this.state.expire}
+                                       onChange={() => this.expireIn(1)} /> Expire
                             </label>
-                            {this.state.expire && 
-                            <InputMoment
-                                moment={this.state.m}
-                                onChange={this.handleChange}
-                                onSave={this.handleSave}
-                            />
+                            <p onClick={() => this.setState({showPicker: true})}>Expire: {(this.state.expire ? Utils.formatTimestamp(this.state.expire) : 'never')}</p>
+                                                        {this.state.expire && this.state.showPicker && 
+                            <div>
+                                <InputMoment
+                                    moment={this.state.expire}
+                                    onChange={(m) => this.setState({expire: m})}
+                                    onSave={() => this.setState({showPicker: false})}
+                                />
+                            </div>
                             }
-                            <p>Expire: {(this.state.expire ? Utils.formatTimestamp(this.state.expire) : 'never')}</p>
                             <div>
                                 <button onClick={() => this.expireIn(1)}>24 h</button>
                                 <button onClick={() => this.expireIn(2)}>48 h</button>

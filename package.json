@@ -26,6 +26,7 @@
     "devour-client": "^1.4.2",
     "express": "^4.14.0",
     "input-moment": "^0.3.2",
+    "ionicons": "^3.0.0",
     "jwt-simple": "^0.5.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",

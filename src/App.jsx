@@ -9,7 +9,7 @@ import BanList from './pages/BanList.jsx';
 import CreateBan from './pages/CreateBan.jsx';
 
 import 'react-table/react-table.css';
-import './main.scss';
+import './styles/main.scss';
 
 // used for jquery Links
 window.myHistory = browserHistory;

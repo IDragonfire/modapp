@@ -1,14 +1,19 @@
 import React from 'react';
+import InputMoment from 'input-moment';
+import Moment from 'moment';
+
 
 import Api from '../utils/Api.jsx';
 import Utils from '../utils/Utils.jsx';
 import Page from '../components/Page.jsx';
 
+
 export default class CreateBan extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expire: null
+            expire: null,
+            m: Moment()
         };
         this.expireIn = this.expireIn.bind(this);
     }
@@ -54,10 +59,17 @@ export default class CreateBan extends React.Component {
                         <div>
                             <label>
                                 <input type="radio" name="duration" value="permanent" /> Permanent
-                        </label>
+                            </label>
                             <label>
                                 <input type="radio" name="duration" value="expire" checked={true} /> Expire
-                        </label>
+                            </label>
+                            {this.state.expire && 
+                            <InputMoment
+                                moment={this.state.m}
+                                onChange={this.handleChange}
+                                onSave={this.handleSave}
+                            />
+                            }
                             <p>Expire: {(this.state.expire ? Utils.formatTimestamp(this.state.expire) : 'never')}</p>
                             <div>
                                 <button onClick={() => this.expireIn(1)}>24 h</button>

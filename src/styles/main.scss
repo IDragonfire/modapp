@@ -1,9 +1,4 @@
-$color-background: #272b30;
-$color-main: #c8c8c8;
-$color-highlight: rgba(255, 0, 0, .75);
-$color-header: #1C1E22;
-$color-1: #2E3338;
-$color-2: #353A41;
+@import 'variables.scss';
 
 h1,
 h2 {

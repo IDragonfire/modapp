@@ -26,12 +26,11 @@ jsonApi.define('banInfo', {
 jsonApi.define('player', {
     login: '',
     eMail: '',
-    userAgent: ''
-    //Bug in Devour: https://github.com/twg/devour/issues/47
-    // clanMemberships: {
-    //     jsonApi: 'hasMany',
-    //     type: 'clanMembership'
-    // }
+    userAgent: '',
+    clanMemberships: {
+        jsonApi: 'hasMany',
+        type: 'clanMembership'
+    }
 });
 
 

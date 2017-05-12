@@ -72,6 +72,11 @@ div .-even {
   position: relative;
 }
 
+.-btn {
+  height: inherit !important;
+  color: $color-main !important;
+}
+
 // TODO: use global input layout
 .react-autosuggest__input {
   height: 30px;

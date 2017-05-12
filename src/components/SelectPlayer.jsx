@@ -67,6 +67,9 @@ export default class SelectPlayer extends React.Component {
         this.setState({
             player: suggestion
         });
+        if (this.props.onChange) {
+            this.props.onChange(suggestion);
+        }
         return suggestion.login;
     }
 

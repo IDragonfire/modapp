@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import { Link } from 'react-router';
 
 import Api from '../utils/Api.jsx';
 import Page from '../components/Page.jsx';
@@ -10,7 +11,8 @@ export default class BanList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: null
+            list: null,
+            playerForNextBan: null
         };
         this.columns = [{
             header: '#',
@@ -36,6 +38,7 @@ export default class BanList extends React.Component {
             width: 85,
             hideFilter: true
         }];
+        this.playerSelected = this.playerSelected.bind(this);
     }
 
     componentDidMount() {
@@ -60,12 +63,19 @@ export default class BanList extends React.Component {
         return row[id] !== undefined ? String(row[id]).toLowerCase().includes(filterValue) : true;
     }
 
+    playerSelected(data) {
+        this.setState({ playerForNextBan: data});
+    }
+
     render() {
         return (
             <Page title="Bans">
                 <div>
                     <h2>Create Ban</h2>
-                    <SelectPlayer/>
+                    <SelectPlayer onChange={this.playerSelected}/>
+                    <Link to={`/action/ban/${(this.state.playerForNextBan) ? this.state.playerForNextBan.id : ''}`} >
+                        <button>Ban {this.state.playerForNextBan && this.state.playerForNextBan.login}</button>
+                    </Link>
                 </div>
                 {!this.state.list &&
                     'Loading ...'

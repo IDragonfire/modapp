@@ -71,8 +71,10 @@ export default class CreateBan extends React.Component {
                                        checked={this.state.expire}
                                        onChange={() => this.expireIn(1)} /> Expire
                             </label>
-                            <p onClick={() => this.setState({showPicker: true})}>Expire: {(this.state.expire ? Utils.formatTimestamp(this.state.expire) : 'never')}</p>
-                                                        {this.state.expire && this.state.showPicker && 
+                            <p onClick={() => this.setState({showPicker: true})}>Expire: {(this.state.expire ? 
+                                `${Utils.formatTimestamp(this.state.expire)} (${Moment.duration(this.state.expire.diff()).humanize()})`
+                                : 'never')}</p>
+                            {this.state.expire && this.state.showPicker &&
                             <div>
                                 <InputMoment
                                     moment={this.state.expire}

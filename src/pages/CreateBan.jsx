@@ -59,16 +59,12 @@ export default class CreateBan extends React.Component {
                         <div>
                             <label>
                                 <input type="radio"
-                                       name="duration"
-                                       value="permanent"
-                                       checked={!this.state.expire}
+                                       checked={this.state.expire == null}
                                        onChange={() => this.setState({expire: null})}/> Permanent
                             </label>
                             <label>
                                 <input type="radio"
-                                       name="duration"
-                                       value="expire"
-                                       checked={this.state.expire}
+                                       checked={this.state.expire != null}
                                        onChange={() => this.expireIn(1)} /> Expire
                             </label>
                             <p onClick={() => this.setState({showPicker: true})}>Expire: {(this.state.expire ? 

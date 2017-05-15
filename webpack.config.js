@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'www');
 var APP_DIR = path.resolve(__dirname, 'src');
 
 const definePlugin = new webpack.DefinePlugin({
-    'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || 'https://japi.test.faforever.com'),
+    'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL || 'http://localhost:8010'),
     'process.env.OAUTH_CLIENT_ID': JSON.stringify(process.env.OAUTH_CLIENT_ID || '83891c0c-feab-42e1-9ca7-515f94f808ef'),
     'process.env.OAUTH_REDIRECT_URI': JSON.stringify(process.env.OAUTH_REDIRECT_URI || 'https://japi.test.faforever.com')
 });

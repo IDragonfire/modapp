@@ -6,6 +6,7 @@ import {Router, Route, browserHistory} from 'react-router';
 import Home from './pages/Home.jsx';
 import AvatarList from './pages/AvatarList.jsx';
 import BanList from './pages/BanList.jsx';
+import PlayerList from './pages/PlayerList.jsx';
 import CreateBan from './pages/CreateBan.jsx';
 
 import 'react-table/react-table.css';
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="/" component={Home} />
         <Route path="/avatars" component={AvatarList} />
         <Route path="/bans" component={BanList} />
+        <Route path="/players" component={PlayerList} />
         <Route path="/action/ban/:playerid" component={CreateBan} />
       </Route>
     </Router>,

@@ -8,24 +8,24 @@ export default class AvatarList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: null
+            list: []
         };
         this.columns = [{
-            header: '#',
+            Header: '#',
             accessor: 'id',
             width: 60
         }, {
             id: 'img',
-            header: 'Img',
+            Header: 'Img',
             accessor: 'url',
-            render: props => <img src={props.row.url} alt={props.row.url} />,
+            Cell: props => <img src={props.row.url} alt={props.row.url} />,
             width: 50,
             hideFilter: true
         }, {
-            header: 'Tooltip',
+            Header: 'Tooltip',
             accessor: 'tooltip'
         }, {
-            header: 'Url',
+            Header: 'Url',
             accessor: 'url'
         }];
     }
@@ -51,17 +51,13 @@ export default class AvatarList extends React.Component {
     render() {
         return (
             <Page title="Avatar List">
-                {!this.state.list &&
-                    'Loading ...'
-                }
-                {this.state.list &&
-                    <ReactTable
-                        showFilters={true}
-                        defaultFilterMethod={this.filter}
-                        data={this.state.list}
-                        columns={this.columns}
-                    />
-                }
+                <ReactTable
+                    showFilters={true}
+                    defaultFilterMethod={this.filter}
+                    data={this.state.list}
+                    columns={this.columns}
+                    loading={this.state.list.length == 0}
+                />
             </Page>
         );
     }

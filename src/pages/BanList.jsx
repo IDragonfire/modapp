@@ -11,30 +11,30 @@ export default class BanList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: null,
+            list: [],
             playerForNextBan: null
         };
         this.columns = [{
-            header: '#',
+            Header: '#',
             accessor: 'id',
             width: 60
         }, {
             id: 'player',
-            header: 'Player',
+            Header: 'Player',
             accessor: banData => banData.player ? banData.player.login : 'UNKNOWN PLAYER',
             width: 130
         }, {
-            header: 'Reason',
+            Header: 'Reason',
             accessor: 'reason'
         }, {
-            header: 'ExpiresAt',
+            Header: 'ExpiresAt',
             id: 'expiresAt',
             accessor: banData => Utils.formatTimestamp(banData.expiresAt),
             width: 160
         }, {
-            header: 'Actions',
+            Header: 'Actions',
             accessor: 'action',
-            render: props => <button alt={props.row.id}>Revoke</button>,
+            Cell: props => <button alt={props.row.id}>Revoke</button>,
             width: 85,
             hideFilter: true
         }];
@@ -70,27 +70,25 @@ export default class BanList extends React.Component {
     render() {
         return (
             <Page title="Bans">
-                <div>
+                {/*<div>
                     <h2>Create Ban</h2>
                     <SelectPlayer onChange={this.playerSelected}/>
                     <Link to={`/action/ban/${(this.state.playerForNextBan) ? this.state.playerForNextBan.id : ''}`} >
                         <button>Ban {this.state.playerForNextBan && this.state.playerForNextBan.login}</button>
                     </Link>
-                </div>
-                {!this.state.list &&
-                    'Loading ...'
-                }
-                <div>
-                    <h2>Ban List</h2>
+                </div>*/}
+                {/*<div>
+                    <h2>Ban List</h2>*/}
                 {this.state.list &&
                     <ReactTable
                         showFilters={true}
                         defaultFilterMethod={this.filter}
                         data={this.state.list}
                         columns={this.columns}
+                        loading={this.state.list.length == 0}
                     />
                 }
-                </div>
+                {/*</div>*/}
             </Page>
         );
     }

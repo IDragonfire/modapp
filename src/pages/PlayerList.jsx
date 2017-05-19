@@ -13,11 +13,11 @@ export default class PlayerList extends React.Component {
             loading: true
         };
         this.columns = [{
-            header: '#',
+            Header: '#',
             accessor: 'id',
             width: 60
         }, {
-            header: 'Login',
+            Header: 'Login',
             accessor: 'login'
         }];
         this.fetchData = this.fetchData.bind(this);
@@ -35,15 +35,15 @@ export default class PlayerList extends React.Component {
         console.log(tableState);
         this.setState({ loading: true });
         Api.json().findAll('player',
-            {
+            this.filterString({
                 page:
                 {
                     size: tableState.pageSize,
                     number: tableState.page + 1,
                     totals: true
                 },
-                sort: this.sortString(tableState.sorting)
-            })
+                sort: this.sortString(tableState.sorted)
+            }, tableState.filtered))
             .then(data => {
                 this.setState({ data, loading: false, pages: data.meta.page.totalPages });
             }).catch(error => console.error(error));
@@ -68,6 +68,20 @@ export default class PlayerList extends React.Component {
         return sorting;
     }
 
+    filterString(src, filterFields) {
+        let filter = '';
+        filterFields.forEach(field => {
+            if (filter != '') {
+                filter += ';';
+            }
+            filter += `${field.id}==*${field.value}*`;
+        });
+        if (filter != '') {
+            src.filter = filter;
+        }
+        return src;
+    }
+
     render() {
         return (
             <Page title="Player List">
@@ -81,7 +95,7 @@ export default class PlayerList extends React.Component {
                     data={this.state.data} // Set the rows to be displayed
                     pages={this.state.pages} // Display the total number of pages
                     loading={this.state.loading} // Display the loading overlay when we need it
-                    onChange={this.fetchData} // Request new data when things change
+                    onFetchData={this.fetchData} // Request new data when things change
                 />
             </Page>
         );

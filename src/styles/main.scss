@@ -39,8 +39,11 @@ footer ul li {
   display: inline-block;
 }
 
-
 // ### react-table ### 
+
+.ReactTable {
+  display: inherit;
+}
 
 .rt-th {
   background-color: $color-header;

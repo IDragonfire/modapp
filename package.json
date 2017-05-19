@@ -7,7 +7,7 @@
     "test": "node_modules/.bin/eslint --ext jsx .",
     "build": "webpack --progress --colors -p",
     "start": "node server.js NODE_ENV=production",
-    "dev": "node_modules/.bin/webpack-dev-server --port 8010 --linline --content-base www",
+    "dev": "node_modules/.bin/webpack-dev-server --port 8020 --linline --content-base www",
     "lint": "node_modules/.bin/eslint --fix --ext jsx ."
   },
   "devDependencies": {

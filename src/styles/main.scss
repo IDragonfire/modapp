@@ -62,15 +62,15 @@ div .-even {
   box-shadow: inset 0 -3px 0 0 $color-highlight !important;
 }
 
+.-btn {
+  height: inherit !important;
+  color: $color-main !important;
+}
+
 // ### react-autosuggest ### 
 
 .react-autosuggest__container {
   position: relative;
-}
-
-.-btn {
-  height: inherit !important;
-  color: $color-main !important;
 }
 
 // TODO: use global input layout
